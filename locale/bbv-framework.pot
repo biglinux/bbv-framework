@@ -12,7 +12,3 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: C\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: bbv-framework/usr/share/bigbashview/framework/components/cardresult.html:0
-msgid "Icon"
-msgstr ""
