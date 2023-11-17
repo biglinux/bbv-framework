@@ -1,0 +1,13 @@
+#: bbv-framework/usr/share/bigbashview/framework/js/alpine/cdn.min.js:5
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: C\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: attranslate\n"
+
+#: bbv-framework/usr/share/bigbashview/framework/components/cardresult.html:0
+msgid "Icon"
+msgstr "Icono"
