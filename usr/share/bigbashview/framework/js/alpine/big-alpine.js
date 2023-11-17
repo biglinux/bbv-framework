@@ -128,3 +128,9 @@ async function xfetchCompleteJson(url, method = 'GET') {
             console.error('Fetching complete JSON failed:', error);
         });
 }
+
+function _run(run) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/execute$ " + run);
+    xhttp.send();
+    };
