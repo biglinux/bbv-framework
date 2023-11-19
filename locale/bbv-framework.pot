@@ -5,6 +5,7 @@
 #: bbv-framework/usr/share/bigbashview/framework/js/alpine/cdn.min.js:5
 #: bbv-framework/usr/share/bigbashview/framework/js/alpine/cdn.min.js:5
 #: bbv-framework/usr/share/bigbashview/framework/js/alpine/cdn.min.js:5
+#: bbv-framework/usr/share/bigbashview/framework/components/switch.html:0
 msgid ""
 msgstr ""
 "MIME-Version: 1.0\n"
