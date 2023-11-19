@@ -134,3 +134,23 @@ function _run(run) {
     xhttp.open("GET", "/execute$ " + run);
     xhttp.send();
     };
+
+function autoAdjustGrid() {
+    const container = document.querySelector('.grid-container-auto-adjust');
+    const minWidth = parseInt(container.dataset.minWidth, 10) || 320;
+    const maxWidth = parseInt(container.dataset.maxWidth, 10) || null;
+    const containerWidth = maxWidth ? Math.min(container.offsetWidth, maxWidth) : container.offsetWidth;
+    const totalDivs = container.children.length;
+
+    let maxColumns = Math.floor(containerWidth / minWidth);
+    let columns = maxColumns;
+
+    while (totalDivs % columns !== 0 && columns > 1) {
+        columns--;
+    }
+
+    container.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    if (maxWidth) {
+        container.style.maxWidth = `${maxWidth}px`;
+    }
+}
