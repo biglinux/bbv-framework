@@ -147,22 +147,29 @@ function _run(run) {
     xhttp.send();
     };
 
+
+
 function autoAdjustGrid() {
-    const container = document.querySelector('.grid-container-auto-adjust');
-    const minWidth = parseInt(container.dataset.minWidth, 10) || 320;
-    const maxWidth = parseInt(container.dataset.maxWidth, 10) || null;
-    const containerWidth = maxWidth ? Math.min(container.offsetWidth, maxWidth) : container.offsetWidth;
-    const totalDivs = container.children.length;
+    // Seleciona todos os elementos com a classe 'grid-container-auto-adjust'
+    const containers = document.querySelectorAll('.grid-container-auto-adjust');
 
-    let maxColumns = Math.floor(containerWidth / minWidth);
-    let columns = maxColumns;
+    containers.forEach(container => {
+        // O restante do código é aplicado a cada container individualmente
+        const minWidth = parseInt(container.dataset.minWidth, 10) || 320;
+        const maxWidth = parseInt(container.dataset.maxWidth, 10) || null;
+        const containerWidth = maxWidth ? Math.min(container.offsetWidth, maxWidth) : container.offsetWidth;
+        const totalDivs = container.children.length;
 
-    while (totalDivs % columns !== 0 && columns > 1) {
-        columns--;
-    }
+        let maxColumns = Math.floor(containerWidth / minWidth);
+        let columns = maxColumns;
 
-    container.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-    if (maxWidth) {
-        container.style.maxWidth = `${maxWidth}px`;
-    }
+        while (totalDivs % columns !== 0 && columns > 1) {
+            columns--;
+        }
+
+        container.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+        if (maxWidth) {
+            container.style.maxWidth = `${maxWidth}px`;
+        }
+    });
 }
