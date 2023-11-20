@@ -1,0 +1,11 @@
+    <!-- card-model-1.html -->
+    <article class="grid-item round fill medium-height middle-align center-align no-margin" :class="articleClass">
+        <div>
+            <img class="extra" :src="icon" alt="" :class="iconClass">
+            <h5 class="center-align" x-html="title" :class="titleClass"></h5>
+            <p x-html="description" :class="descriptionClass"></p>
+            <button class="border secondary-container large-margin upper" :class="buttonClass" @click="buttonAction">
+                <i x-html="buttonIcon" :class="buttonIconClass"></i><span x-html="buttonText" :class="buttonTextClass"></span>
+            </button>
+        </div>
+    </article>

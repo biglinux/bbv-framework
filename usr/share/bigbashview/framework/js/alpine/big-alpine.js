@@ -71,18 +71,30 @@ document.addEventListener('alpine:init', async () => {
             });
     };
 
-    // Função para inicializar componentes customizados
     document.querySelectorAll('[component]').forEach(async (component) => {
         const componentName = component.getAttribute('component');
         const jsonFile = component.getAttribute('load-json');
-        const componentHtml = await fetch(`components/${componentName}.html`).then(res => res.text());
-        
-        if (jsonFile) {
-            const jsonData = await fetch(jsonFile).then(res => res.json());
-            component.innerHTML = componentHtml;
-            Alpine.addScopeToNode(component, jsonData, Alpine.reactive);
+
+        let response = await fetch(`components/${componentName}.html`);
+        let componentHtml = '';
+
+        if (!response.ok) {
+            // Tenta carregar o componente da pasta alternativa se não encontrado na primeira
+            response = await fetch(`/usr/share/bigbashview/framework/component/${componentName}.html`);
+        }
+
+        if (response.ok) {
+            componentHtml = await response.text();
+
+            if (jsonFile) {
+                const jsonData = await fetch(jsonFile).then(res => res.json());
+                component.innerHTML = componentHtml;
+                Alpine.addScopeToNode(component, jsonData, Alpine.reactive);
+            } else {
+                component.innerHTML = componentHtml;
+            }
         } else {
-            component.innerHTML = componentHtml;
+            console.error(`Component '${componentName}' not found in either path.`);
         }
     });
 });

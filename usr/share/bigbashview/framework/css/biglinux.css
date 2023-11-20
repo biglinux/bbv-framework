@@ -187,3 +187,6 @@ menu.min {
     inset-block-start: auto;
 }
 
+.bold {
+    font-weight: 900;
+}
