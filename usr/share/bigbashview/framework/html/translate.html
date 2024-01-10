@@ -1,36 +1,39 @@
-    <script src="/usr/share/bigbashview/framework/js/stonejs-defer.js" defer></script>
-    <script src="/usr/share/bigbashview/framework/js/stonejs.js"></script>
-    <script>
-        function loadLocale(locale) {
-            return fetch(`/usr/share/locale/${locale}/LC_MESSAGES/${projectName}.json`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Locale file not found for ${locale}`);
-                    }
-                    return response.json();
-                });
-        }
+<script src="/usr/share/bigbashview/framework/js/stonejs-defer.js" defer></script>
+<script src="/usr/share/bigbashview/framework/js/stonejs.js"></script>
+<script>
+    // Function to load the locale file based on the given locale
+    function loadLocale(locale) {
+        return fetch(`/usr/share/locale/${locale}/LC_MESSAGES/${projectName}.json`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Locale file not found for ${locale}`);
+                }
+                return response.json();
+            });
+    }
 
-        function initializeStone(data, locale) {
-            var catalogs = data;
-            window._ = Stone.gettext;       // Alias the Stone.gettext function
-            Stone.addCatalogs(catalogs);    // Add catalogs
-            Stone.setLocale(locale);        // Set the locale
-            Stone.enableDomScan(true);      // Allow Stone.js to scan the DOM to find translatable nodes
-        }
+    // Function to initialize Stone.js with the provided data and locale
+    function initializeStone(data, locale) {
+        var catalogs = data;
+        window._ = Stone.gettext;       // Alias the Stone.gettext function
+        Stone.addCatalogs(catalogs);    // Add catalogs
+        Stone.setLocale(locale);        // Set the locale
+        Stone.enableDomScan(true);      // Allow Stone.js to scan the DOM to find translatable nodes
+    }
 
-        // Getting the language code and normalizing it to two letters
-        var userLang = (navigator.language || navigator.userLanguage).split('-')[0];
+    // Getting the language code and normalizing it to two letters
+    var userLang = (navigator.language || navigator.userLanguage).split('-')[0];
 
-        loadLocale(userLang)
-            .then(data => {
-                initializeStone(data, userLang);
-            })
-            .catch(error => {
-                console.error(error);
-                // If the user's language is not available, fallback to English
-                loadLocale('en').then(data => {
-                    initializeStone(data, 'en');
+    // Load the locale file for the user's language and initialize Stone.js
+    loadLocale(userLang)
+        .then(data => {
+            initializeStone(data, userLang);
+        })
+        .catch(error => {
+            console.error(error);
+            // If the user's language is not available, fallback to English
+            loadLocale('en').then(data => {
+                initializeStone(data, 'en');
             });
         });
-    </script>
+</script>

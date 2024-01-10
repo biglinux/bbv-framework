@@ -1,11 +1,19 @@
-    <!-- card-model-1.html -->
-    <article class="grid-item round fill medium-height middle-align center-align no-margin" :class="articleClass">
-        <div>
-            <img class="extra" :src="icon" alt="" :class="iconClass">
-            <h5 class="center-align" x-html="title" :class="titleClass"></h5>
-            <p x-html="description" :class="descriptionClass"></p>
-            <button class="border secondary-container large-margin upper" :class="buttonClass" @click="buttonAction">
-                <i x-html="buttonIcon" :class="buttonIconClass"></i><span x-html="buttonText" :class="buttonTextClass"></span>
-            </button>
-        </div>
-    </article>
+<!-- FILEPATH: /usr/share/bigbashview/framework/component/card-model-1.html -->
+<!-- This is the HTML template for a card component -->
+<article class="grid-item round fill medium-height middle-align center-align no-margin" :class="articleClass">
+    <div>
+        <!-- Display an icon -->
+        <img class="extra" :src="icon" alt="" :class="iconClass">
+        <!-- Display the title -->
+        <h5 class="center-align" x-html="title" :class="titleClass"></h5>
+        <!-- Display the description -->
+        <p x-html="description" :class="descriptionClass"></p>
+        <!-- Display a button -->
+        <button class="border secondary-container large-margin upper" :class="buttonClass" @click="buttonAction">
+            <!-- Display an icon inside the button -->
+            <i x-html="buttonIcon" :class="buttonIconClass"></i>
+            <!-- Display the button text -->
+            <span x-html="buttonText" :class="buttonTextClass"></span>
+        </button>
+    </div>
+</article>

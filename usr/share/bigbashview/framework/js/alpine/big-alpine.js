@@ -1,41 +1,39 @@
 // Alpine listeners
-document.addEventListener('alpine:init', async () => {
-
+document.addEventListener("alpine:init", async () => {
     // Existing 'fetchjson' magic method for fetching and returning a specific item from JSON
-    Alpine.magic('fetchjson', () => {
-        return async (
-            url,
-            jsonItem = null,
-            method = "GET"
-        ) => {
-            let response = await xfetch(url = url, jsonItem = jsonItem, method = method);
+    Alpine.magic("fetchjson", () => {
+        return async (url, jsonItem = null, method = "GET") => {
+            let response = await xfetch(
+                (url = url),
+                (jsonItem = jsonItem),
+                (method = method)
+            );
             return response;
-        }
+        };
     });
 
     // Existing 'fetch' magic method for fetching and returning text
-    Alpine.magic('fetch', () => {
-        return async (
-            url,
-            method = "GET"
-        ) => {
-            let response = await xfetch(url = url, jsonItem = null, method = method);
+    Alpine.magic("fetch", () => {
+        return async (url, method = "GET") => {
+            let response = await xfetch(
+                (url = url),
+                (jsonItem = null),
+                (method = method)
+            );
             return response;
-        }
+        };
     });
 
     // New 'fetchCompleteJson' magic method for fetching and returning complete JSON
-    Alpine.magic('fetchCompleteJson', () => {
-        return async (
-            url,
-            method = "GET"
-        ) => {
+    Alpine.magic("fetchCompleteJson", () => {
+        return async (url, method = "GET") => {
             let response = await xfetchCompleteJson(url, method);
             return response;
-        }
+        };
     });
 
-    Alpine.magic('loadComponent', () => {
+    // Magic method to load a component from a URL and initialize it
+    Alpine.magic("loadComponent", () => {
         return async (url, target) => {
             const response = await fetch(url);
             const text = await response.text();
@@ -44,50 +42,53 @@ document.addEventListener('alpine:init', async () => {
         };
     });
 
-    // Função para verificar se o resultado de uma URL é 'active'
-    Alpine.magic('isActive', () => {
+    // Function to check if the result of a URL is 'active'
+    Alpine.magic("isActive", () => {
         return async (url) => {
             try {
                 const response = await fetch(url);
                 const text = await response.text();
-                return text.trim().toLowerCase() === 'true';
+                return text.trim().toLowerCase() === "true";
             } catch (error) {
-                console.error('Fail to verify isActive:', error);
+                console.error("Fail to verify isActive:", error);
                 return false;
             }
         };
     });
 
-    // Define uma função global para verificar o estado 'active'
+    // Define a global function to check the 'active' state
     isActive = function (alpineComponent, url) {
         fetch(url)
-            .then(response => response.text())
-            .then(text => {
+            .then((response) => response.text())
+            .then((text) => {
                 alpineComponent.active = text.trim();
             })
-            .catch(error => {
-                console.error('Fail to verify isActive:', error);
+            .catch((error) => {
+                console.error("Fail to verify isActive:", error);
                 return false;
             });
     };
 
-    document.querySelectorAll('[component]').forEach(async (component) => {
-        const componentName = component.getAttribute('component');
-        const jsonFile = component.getAttribute('load-json');
+    // Loop through all elements with the 'component' attribute
+    document.querySelectorAll("[component]").forEach(async (component) => {
+        const componentName = component.getAttribute("component");
+        const jsonFile = component.getAttribute("load-json");
 
         let response = await fetch(`components/${componentName}.html`);
-        let componentHtml = '';
+        let componentHtml = "";
 
         if (!response.ok) {
-            // Tenta carregar o componente da pasta alternativa se não encontrado na primeira
-            response = await fetch(`/usr/share/bigbashview/framework/component/${componentName}.html`);
+            // Try to load the component from the alternative path if not found in the first one
+            response = await fetch(
+                `/usr/share/bigbashview/framework/component/${componentName}.html`
+            );
         }
 
         if (response.ok) {
             componentHtml = await response.text();
 
             if (jsonFile) {
-                const jsonData = await fetch(jsonFile).then(res => res.json());
+                const jsonData = await fetch(jsonFile).then((res) => res.json());
                 component.innerHTML = componentHtml;
                 Alpine.addScopeToNode(component, jsonData, Alpine.reactive);
             } else {
@@ -100,36 +101,31 @@ document.addEventListener('alpine:init', async () => {
 });
 
 // Actual fetch function
-async function xfetch(url, jsonItem = null, method = 'GET') {
-
+async function xfetch(url, jsonItem = null, method = "GET") {
     if (jsonItem == null) {
-
-        return fetch(url, {method: method})
+        return fetch(url, { method: method })
             .then((response) => response.text())
             .then((responseText) => {
-                return responseText
+                return responseText;
             })
             .catch((error) => {
-              console.log(error)
+                console.log(error);
             });
-
     } else {
-
-        return fetch(url, {method: method})
+        return fetch(url, { method: method })
             .then((response) => response.json())
             .then((responseJson) => {
-                return responseJson
+                return responseJson;
             })
             .catch((error) => {
-              console.log(error)
+                console.log(error);
             });
-
     }
 }
 
 // New fetch function for fetching complete JSON
-async function xfetchCompleteJson(url, method = 'GET') {
-    return fetch(url, {method: method})
+async function xfetchCompleteJson(url, method = "GET") {
+    return fetch(url, { method: method })
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -137,27 +133,29 @@ async function xfetchCompleteJson(url, method = 'GET') {
             return response.json();
         })
         .catch((error) => {
-            console.error('Fetching complete JSON failed:', error);
+            console.error("Fetching complete JSON failed:", error);
         });
 }
 
+// Function to execute a command
 function _run(run) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "/execute$ " + run);
     xhttp.send();
-    };
+}
 
-
-
+// Function to automatically adjust the grid layout
 function autoAdjustGrid() {
-    // Seleciona todos os elementos com a classe 'grid-container-auto-adjust'
-    const containers = document.querySelectorAll('.grid-container-auto-adjust');
+    // Select all elements with the class 'grid-container-auto-adjust'
+    const containers = document.querySelectorAll(".grid-container-auto-adjust");
 
-    containers.forEach(container => {
-        // O restante do código é aplicado a cada container individualmente
+    containers.forEach((container) => {
+        // The rest of the code is applied to each container individually
         const minWidth = parseInt(container.dataset.minWidth, 10) || 320;
         const maxWidth = parseInt(container.dataset.maxWidth, 10) || null;
-        const containerWidth = maxWidth ? Math.min(container.offsetWidth, maxWidth) : container.offsetWidth;
+        const containerWidth = maxWidth
+            ? Math.min(container.offsetWidth, maxWidth)
+            : container.offsetWidth;
         const totalDivs = container.children.length;
 
         let maxColumns = Math.floor(containerWidth / minWidth);
