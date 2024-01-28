@@ -9,6 +9,115 @@ dialog#pkginfo {
   opacity: 0;
 }
 
+.mini-round{---round: 1rem}
+
+.min-height-2em{min-height: 2em}
+.min-height-2_4em{min-height: 3em}
+.min-height-3em{min-height: 3em}
+
+.package-results {
+    display: flex;
+    min-height: 11.35rem;
+}
+
+
+.left-bar-package-results {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    padding-top: 0.5em;
+    display: grid;
+}
+
+.package-results-button-format {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0.85em;
+    display: table;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    min-width: 92px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: -webkit-fill-available;
+}
+
+.package-results-button {
+    margin-top: auto;
+}
+
+.right-bar-package-results {
+    align-self: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.bgcolor-pkg-native{background-color: #747474 !important}
+.bgcolor-pkg-aur{background-color: #4f768b !important}
+.bgcolor-pkg-flatpak{background-color: #837f2e !important}
+.bgcolor-pkg-snap{background-color: #7764a9 !important}
+.bgcolor-pkg-web{background-color: #2c8b70 !important}
+.disable-checkbox-bigstore{background-color: #111111 !important}
+
+.bgcolor-pkg-aur ::after, .bgcolor-pkg-native ::after, .bgcolor-pkg-flatpak ::after, .bgcolor-pkg-snap ::after, .bgcolor-pkg-web ::after{background-color: rgb(0 0 0 / 32%) !important}
+
+label{
+    font-size: inherit;
+    cursor: inherit;
+}
+
+.small-bottom-distance {padding: 0px 0px 0.4rem 0px;}
+
+.cursor-alias {cursor: alias}
+.cursor-all-scroll {cursor: all-scroll}
+.cursor-auto {cursor: auto}
+.cursor-cell {cursor: cell}
+.cursor-col-resize {cursor: col-resize}
+.cursor-context-menu {cursor: context-menu}
+.cursor-copy {cursor: copy}
+.cursor-crosshair {cursor: crosshair}
+.cursor-default {cursor: default}
+.cursor-e-resize {cursor: e-resize}
+.cursor-ew-resize {cursor: ew-resize}
+.cursor-grab {cursor: grab}
+.cursor-grabbing {cursor: grabbing}
+.cursor-help {cursor: help}
+.cursor-move {cursor: move}
+.cursor-n-resize {cursor: n-resize}
+.cursor-ne-resize {cursor: ne-resize}
+.cursor-nesw-resize {cursor: nesw-resize}
+.cursor-ns-resize {cursor: ns-resize}
+.cursor-nw-resize {cursor: nw-resize}
+.cursor-nwse-resize {cursor: nwse-resize}
+.cursor-no-drop {cursor: no-drop}
+.cursor-none {cursor: none}
+.cursor-not-allowed {cursor: not-allowed}
+.cursor-pointer {cursor: pointer}
+.cursor-progress {cursor: progress}
+.cursor-row-resize {cursor: row-resize}
+.cursor-s-resize {cursor: s-resize}
+.cursor-se-resize {cursor: se-resize}
+.cursor-sw-resize {cursor: sw-resize}
+.cursor-text {cursor: text}
+.cursor-url {cursor: url}
+.cursor-w-resize {cursor: w-resize}
+.cursor-wait {cursor: wait}
+.cursor-zoom-in {cursor: zoom-in}
+.cursor-zoom-out {cursor: zoom-out}
+
+.button-elevate1 {
+    box-shadow: var(--button-elevate1)!important;
+    transition: box-shadow 0.25s ease-in-out;
+}
+
+.onhover-elevate1 {
+    transition: box-shadow 0.25s ease-in-out;
+}
+
+.onhover-elevate1:hover {
+    box-shadow: var(--onhover-elevate1);
+}
+
 :root,
 body.light {
   --primary: #cdcdcd;
@@ -42,15 +151,17 @@ body.light {
   --surface-dim:#d9dadd;
   --surface-bright:#f9f9fc;
   --surface-container-lowest:#ffffff;
-  --surface-container-low:#f3f3f6;
-  --surface-container:#edeef1;
+  --surface-container-low:#f0f0f0;
+  --surface-container:#cdeef1;
   --surface-container-high:#e8e8eb;
   --surface-container-highest:#cdcdcd;
   --overlay: rgb(0 0 0 /0.5);
   --active: rgb(0 0 0 / 0.1);
-  --elevate1: 0 0.125rem 0.125rem 0 rgb(0 0 0 / 0.32);
-  --elevate2: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 0.4);
-  --elevate3: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 0.48);
+  --elevate1: 0 0.1rem 0.2rem 0 rgb(0 0 0 / 16%);
+  --elevate2: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 0.30);
+  --elevate3: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 0.45);
+  --button-elevate1: 0 0.090rem 0.090rem 0 rgb(0 0 0 / 40%);
+  --onhover-elevate1: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 18%);
   --body: transparent;
 }
 
@@ -87,16 +198,96 @@ body.dark {
   --surface-dim:#111416;
   --surface-bright:#37393c;
   --surface-container-lowest:#0c0e11;
-  --surface-container-low: #3a4049;
+  --surface-container-low:#464b52;
   --surface-container:#1e2022;
   --surface-container-high:#282a2d;
   --surface-container-highest:#20242d;
   --overlay: rgb(0 0 0 / 0.5);
   --active: rgb(255 255 255 / 0.2);
-  --elevate1: 0 0.125rem 0.125rem 0 rgb(0 0 0 / 0.32);
-  --elevate2: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 0.4);
-  --elevate3: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 0.48);
+  --elevate1: 0 0.125rem 0.125rem 0 rgb(0 0 0 / 0.22);
+  --elevate2: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 0.30);
+  --elevate3: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 0.45);
+  --button-elevate1: 0 0.090rem 0.090rem 0 rgb(0 0 0 / 40%);
+  --onhover-elevate1: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 18%);
   --body: transparent;
+}
+
+
+@media only screen and (min-width: 601px) {
+    .m1 {
+        grid-area: auto/span 1;
+    }
+    .m2 {
+        grid-area: auto/span 2;
+    }
+    .m3 {
+        grid-area: auto/span 3;
+    }
+    .m4 {
+        grid-area: auto/span 4;
+    }
+    .m5 {
+        grid-area: auto/span 5;
+    }
+    .m6 {
+        grid-area: auto/span 6;
+    }
+    .m7 {
+        grid-area: auto/span 7;
+    }
+    .m8 {
+        grid-area: auto/span 8;
+    }
+    .m9 {
+        grid-area: auto/span 9;
+    }
+    .m10 {
+        grid-area: auto/span 10;
+    }
+    .m11 {
+        grid-area: auto/span 11;
+    }
+    .m12 {
+        grid-area: auto/span 12;
+    }
+}
+@media only screen and (min-width: 1400px) {
+    .l1 {
+        grid-area: auto/span 1;
+    }
+    .l2 {
+        grid-area: auto/span 2;
+    }
+    .l3 {
+        grid-area: auto/span 3;
+    }
+    .l4 {
+        grid-area: auto/span 4;
+    }
+    .l5 {
+        grid-area: auto/span 5;
+    }
+    .l6 {
+        grid-area: auto/span 6;
+    }
+    .l7 {
+        grid-area: auto/span 7;
+    }
+    .l8 {
+        grid-area: auto/span 8;
+    }
+    .l9 {
+        grid-area: auto/span 9;
+    }
+    .l10 {
+        grid-area: auto/span 10;
+    }
+    .l11 {
+        grid-area: auto/span 11;
+    }
+    .l12 {
+        grid-area: auto/span 12;
+    }
 }
 
 
@@ -130,7 +321,6 @@ nav.extend:is(:hover, .active) {
   position: fixed;
   color: var(--on-surface);
   transform: none;
-  z-index: 100;
   inset-inline-start: 0;
   inset-block-start: 0;
   inset-block-end: 0;

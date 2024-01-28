@@ -8,7 +8,7 @@ nav.extend:is(:hover, .active) {
   position: fixed;
   color: var(--on-surface);
   transform: none;
-  z-index: 100;
+  z-index: 20;
   inset-inline-start: 0;
   inset-block-start: 0;
   inset-block-end: 0;
@@ -23,26 +23,18 @@ nav.extend:is(:hover, .active) {
   gap: 0;
 }
 
-nav.extend > a {
-  padding: 0.75rem;
-  border-radius: 2rem;
-  display: flex;
-  gap: 1rem;
-  inline-size: -webkit-fill-available;
-  justify-content: flex-start;
-}
-
-nav.extend > a:is(:hover, .active) {
-  background-color: var(--secondary-container);
-}
-
-nav.extend > * {
-  inline-size: -webkit-fill-available;
-  justify-content: flex-start;
-}
-
 @media only screen and (min-width: 993px) {
-  nav.extend ~.responsive {
+  nav.extend ~.responsive, .header-fixed-on-right {
     padding-inline-start: 15rem;
   }
 }
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  nav.m.left ~.responsive, .header-fixed-on-right {
+    padding-inline-start: 8rem;
+  }
+  nav.m.left, nav.m.right {
+    inline-size: 7rem !important;
+  }
+}
+
