@@ -1,12 +1,24 @@
 @import url("system.sh.css");
 
+
 dialog#pkginfo {
-  width: 90%;
-  height: 90%;
+    /* width: 90%; */
+    min-width: 65rem;
+    min-height: 92vh;
+    border-radius: 1rem;
+    overflow: inherit;
+    background-color: var(--surface-container-low);
+    /* background-color: #ffffff00; */
 }
 
 .switch>input:checked+span:after {
   opacity: 0;
+}
+
+.close-modal-icon {
+    z-index: 50;
+    /* width: 14px; */
+    position: absolute;
 }
 
 .mini-round{---round: 1rem}
@@ -20,12 +32,39 @@ dialog#pkginfo {
     min-height: 11.35rem;
 }
 
+.package-results-modal {
+    display: flex;
+    flex: auto;
+}
+
+.package-results-icon {
+/*     padding-top: 1.2em; */
+       padding-top: 23px;
+}
+
+.package-results-content {
+    overflow-y: auto;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
 
 .left-bar-package-results {
     border-top-right-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
     padding-top: 0.5em;
     display: grid;
+}
+
+.left-bar-package-results-modal {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    padding-top: 0.5em;
+}
+
+.top-bar-package-results {
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    color: var(--on-tertiary);
 }
 
 .package-results-button-format {
@@ -36,25 +75,62 @@ dialog#pkginfo {
     display: table;
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
-    min-width: 92px;
+    min-width: 8em;
     padding-left: 0px;
     padding-right: 0px;
     width: -webkit-fill-available;
 }
 
+
+
 .package-results-button {
     margin-top: auto;
 }
 
+.package-results-button-format-modal {
+    border-radius: 0px !important;
+    display: table;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    min-width: 8em;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: -webkit-fill-available;
+    margin-top: 2em;
+}
+
+.package-results-modal-title {
+    margin-top: 1.5ch;
+    margin-bottom: 1.5ch;
+}
+
+.right-bar-package-results-modal {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    display: grid;
+    padding-left: 2ch;
+    padding-bottom: 2ch;
+    grid-template-rows: max-content;
+    width: -webkit-fill-available;
+}
+
+.right-bar-package-result-text {
+    max-width: 45rem;
+    text-align: left;
+}
+
 .right-bar-package-results {
     align-self: center;
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-left: 0.5em;
+    min-height: 5em;
+    display: grid;
 }
 
 .bgcolor-pkg-native{background-color: #747474 !important}
 .bgcolor-pkg-aur{background-color: #4f768b !important}
-.bgcolor-pkg-flatpak{background-color: #837f2e !important}
+.bgcolor-pkg-flatpak{background-color: #8b7a13 !important}
 .bgcolor-pkg-snap{background-color: #7764a9 !important}
 .bgcolor-pkg-web{background-color: #2c8b70 !important}
 .disable-checkbox-bigstore{background-color: #111111 !important}
@@ -66,7 +142,13 @@ label{
     cursor: inherit;
 }
 
-.small-bottom-distance {padding: 0px 0px 0.4rem 0px;}
+.small-bottom-distance {padding-bottom: 0.4rem;}
+
+.small-left-distance {padding-left: 0.4rem;}
+.medium-left-distance {padding-left: 1rem;}
+.large-left-distance {padding-left: 2rem;}
+.big-left-distance {padding-left: 3rem;}
+
 
 .cursor-alias {cursor: alias}
 .cursor-all-scroll {cursor: all-scroll}
@@ -292,6 +374,7 @@ body.dark {
 
 
 ::-webkit-scrollbar {
+  overflow: overlay;
   width: 8px;
   height: 8px;
   border-radius: 10px;
