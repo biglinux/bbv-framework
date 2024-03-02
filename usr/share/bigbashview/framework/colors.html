@@ -1,4 +1,3 @@
-<!-- FILEPATH: /usr/share/bigbashview/framework/html/genericHeader.html -->
 <!-- Meta Tags -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,3 +76,100 @@
         }
     }
 </script>
+
+
+<script>
+    function copyText(event) {
+        var el = document.createElement('textarea');
+        el.value = event.target.innerText;
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+
+        // Add copied text notification
+        var copiedText = document.createElement('span');
+        copiedText.innerText = "Copied!";
+        copiedText.style.position = 'fixed';
+        copiedText.style.left = `${event.clientX}px`;
+        copiedText.style.top = `${event.clientY}px`;
+        copiedText.style.backgroundColor = 'white';
+        copiedText.style.padding = '5px';
+        copiedText.style.borderRadius = '5px';
+        copiedText.style.opacity = '0';
+        copiedText.style.transition = 'opacity 0.3s';
+        document.body.appendChild(copiedText);
+        setTimeout(function() {
+            copiedText.style.opacity = '1';
+        }, 100);
+        setTimeout(function() {
+            copiedText.style.opacity = '0';
+        }, 2000);
+        setTimeout(function() {
+            document.body.removeChild(copiedText);
+        }, 2300);
+    }
+</script>
+
+<style>
+    body {
+        background: linear-gradient(to top, #00416a, #e4e5e6);
+    }
+    .mosaic {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .mosaic-item {
+        width: 200px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14pt;
+        position: relative;
+        margin: 16px;
+    }
+    .mosaic-item:hover {
+        color: white;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+<h5 class="center-align padding-large" stonejs>Click on a color to copy it to the clipboard</h5>
+
+<!-- Colors -->
+<div class="mosaic">
+    <div x-data="{ colors: ['primary', 'secondary', 'tertiary', 'error', 'background', 'surface', 'inverse-surface', 'black', 'white', 'transparent'] }">
+        <template x-for="(color, index) in colors" :key="index">
+            <div class="mosaic">
+                <div @click="copyText($event)" :class="`mosaic-item ${color}`" x-text="color"></div>
+                <div @click="copyText($event)" :class="`mosaic-item ${color}-border border`" x-text="`${color}-border`"></div>
+                <div @click="copyText($event)" :class="`mosaic-item ${color}-text`" x-text="`${color}-text`"></div>
+            </div>
+        </template>
+    </div>
+</div>
+
+<!-- More Colors -->
+<div class="mosaic">
+    <div x-data="{ colors: ['amber', 'blue', 'blue-grey', 'brown', 'cyan', 'deep-orange', 'deep-purple', 'green', 'grey', 'indigo', 'light-blue', 'light-green', 'lime', 'orange', 'pink', 'purple', 'red', 'teal', 'yellow'] }">
+        <template x-for="(color, index) in colors" :key="index">
+            <div class="mosaic">
+                <template x-for="i in 10">
+                    <div @click="copyText($event)" :class="`mosaic-item ${color}${i}`" x-text="`${color}${i}`"></div>
+                </template>
+                <div @click="copyText($event)" :class="`mosaic-item ${color}`" x-text="color"></div>
+                <div @click="copyText($event)" :class="`mosaic-item ${color}-border border`" x-text="`${color}-border`"></div>
+                <div @click="copyText($event)" :class="`mosaic-item ${color}-text`" x-text="`${color}-text`"></div>
+            </div>
+        </template>
+    </div>
+</div>
+
+
+</body>

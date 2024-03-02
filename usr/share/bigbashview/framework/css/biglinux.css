@@ -1,14 +1,72 @@
 @import url("system.sh.css");
 
+/** {
+    text-rendering: geometricPrecision;
+}*/
+
+.carousel {
+    margin: auto;
+    height: 35vh;
+}
+
+.carousel img {
+    height: 35vh;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.carousel button:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.carousel button.prev {
+    left: 10px;
+}
+
+.carousel button.next {
+    right: 10px;
+}
 
 dialog#pkginfo {
-    /* width: 90%; */
     min-width: 65rem;
-    min-height: 92vh;
+    height: calc(100% - 8em);
+    min-height: calc(100% - 8em);
     border-radius: 1rem;
     overflow: inherit;
     background-color: var(--surface-container-low);
-    /* background-color: #ffffff00; */
+}
+
+dialog#pkginfo {
+    min-width: 60rem;
+    height: calc(100% - 8em);
+    min-height: calc(100% - 8em);
+    border-radius: 1rem;
+    overflow: inherit;
+    background-color: var(--surface-container-low);
+}
+
+dialog#pkgselected {
+    min-width: 60rem;
+    height: calc(100% - 8em);
+    min-height: calc(100% - 8em);
+    border-radius: 1rem;
+    overflow: inherit;
+    background-color: var(--surface-container-low);
+}
+
+/* Change color of mouse over button  using wave effect */
+:is(.button, button):hover::after {
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.1) 1%, transparent 1%);
 }
 
 .switch>input:checked+span:after {
@@ -17,7 +75,6 @@ dialog#pkginfo {
 
 .close-modal-icon {
     z-index: 50;
-    /* width: 14px; */
     position: absolute;
 }
 
@@ -38,7 +95,6 @@ dialog#pkginfo {
 }
 
 .package-results-icon {
-/*     padding-top: 1.2em; */
        padding-top: 23px;
 }
 
@@ -81,8 +137,6 @@ dialog#pkginfo {
     width: -webkit-fill-available;
 }
 
-
-
 .package-results-button {
     margin-top: auto;
 }
@@ -97,6 +151,7 @@ dialog#pkginfo {
     padding-right: 0px;
     width: -webkit-fill-available;
     margin-top: 2em;
+    transition: 1s;
 }
 
 .package-results-modal-title {
@@ -135,7 +190,7 @@ dialog#pkginfo {
 .bgcolor-pkg-web{background-color: #2c8b70 !important}
 .disable-checkbox-bigstore{background-color: #111111 !important}
 
-.bgcolor-pkg-aur ::after, .bgcolor-pkg-native ::after, .bgcolor-pkg-flatpak ::after, .bgcolor-pkg-snap ::after, .bgcolor-pkg-web ::after{background-color: rgb(0 0 0 / 32%) !important}
+.switch>span:after{background-color: rgb(0 0 0 / 32%) !important}
 
 label{
     font-size: inherit;
@@ -143,12 +198,10 @@ label{
 }
 
 .small-bottom-distance {padding-bottom: 0.4rem;}
-
 .small-left-distance {padding-left: 0.4rem;}
 .medium-left-distance {padding-left: 1rem;}
 .large-left-distance {padding-left: 2rem;}
 .big-left-distance {padding-left: 3rem;}
-
 
 .cursor-alias {cursor: alias}
 .cursor-all-scroll {cursor: all-scroll}
@@ -221,7 +274,7 @@ body.light {
   --on-background:#3c3a3a;
   --surface:#d4d5d7;
   --on-surface:#1a1c1e;
-  --surface-variant:#c3c5c7;
+  --surface-variant:#efefef;
   --on-surface-variant:#41474d;
   --outline:#72787e;
   --outline-variant:#c1c7ce;
@@ -268,7 +321,7 @@ body.dark {
   --on-background:#e2e2e5;
   --surface:#2f333e;
   --on-surface:#e2e2e5;
-  --surface-variant:#272b38;
+  --surface-variant:#464b52;
   --on-surface-variant:#c1c7ce;
   --outline:#8b9198;
   --outline-variant:#41474d;
@@ -293,7 +346,6 @@ body.dark {
   --onhover-elevate1: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 18%);
   --body: transparent;
 }
-
 
 @media only screen and (min-width: 601px) {
     .m1 {
@@ -333,6 +385,7 @@ body.dark {
         grid-area: auto/span 12;
     }
 }
+
 @media only screen and (min-width: 1400px) {
     .l1 {
         grid-area: auto/span 1;
@@ -372,7 +425,6 @@ body.dark {
     }
 }
 
-
 ::-webkit-scrollbar {
   overflow: overlay;
   width: 8px;
@@ -392,7 +444,6 @@ body.dark {
     background: transparent;
   }
 }
-
 
 nav.extend,
 nav.extend:is(:hover, .active) {
@@ -463,3 +514,105 @@ menu.min {
 .bold {
     font-weight: 900;
 }
+
+.transition-icon {
+  transition: transform 0.2s ease-in-out;
+}
+
+.rotate-icon {
+  transform: rotate(360deg);
+}
+
+i.transition-icon.rotate-icon {
+    background-color: #00000069;
+    border-radius: 8px;
+    padding-right: 6px;
+    padding-left: 6px;
+    padding-top: 2px;
+    margin-top: -4px;
+    padding-bottom: 2px;
+}
+
+.infoAndApply {
+    position: fixed;
+    z-index: 150;
+    margin-top: 10px;
+    margin-right: 20px;
+    padding-left: 20px;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.colapse-test {
+    right: 0;
+    position: fixed;
+    z-index: 110;
+}
+
+.opacity-10 { opacity: 0.1 !important; }
+.opacity-20 { opacity: 0.2 !important; }
+.opacity-30 { opacity: 0.3 !important; }
+.opacity-40 { opacity: 0.4 !important; }
+.opacity-50 { opacity: 0.5 !important; }
+.opacity-60 { opacity: 0.6 !important; }
+.opacity-70 { opacity: 0.7 !important; }
+.opacity-80 { opacity: 0.8 !important; }
+.opacity-90 { opacity: 0.9 !important; }
+
+.small-shadow-blue {
+    box-shadow: 0px 0px 6px 2px rgb(0 186 255);
+}
+
+/*  Disable change font-weight */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+}
+
+.custom-search-button {
+    border-radius: 6px;
+    height: 26px !important;
+    background-color: #0000007a;
+    color: #ffffffc4;
+    width: 60px !important;
+    float: center;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.custom-cancel-button {
+    background-color: var(--surface-variant);
+    color: var(--on-surface-variant);
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+
+.field {
+    background-color: var(--surface-variant);
+    color: var(--on-surface-variant);
+}
+
+::placeholder {
+  color: var(--on-surface-variant)!important;
+  opacity: 0.6;;
+}
+
+:is(button, .button).border {
+  border-color: var(--outline);
+  color: inherit !important;
+}
+
+.button, button {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+}
+
+[x-cloak] { display: none !important; }
