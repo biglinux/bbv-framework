@@ -8,6 +8,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: attranslate\n"
 
-#: bbv-framework/usr/share/bigbashview/framework/components/cardresult.html:0
-msgid "Icon"
-msgstr "Ikon"
+#: bbv-framework/usr/share/bigbashview/framework/colors.html:0
+msgid "Click on a color to copy it to the clipboard"
+msgstr ""
