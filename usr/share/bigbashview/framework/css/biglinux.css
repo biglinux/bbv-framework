@@ -129,8 +129,8 @@ dialog#pkgselected {
     border-top-left-radius: 0px !important;
     border-bottom-left-radius: 0.85em;
     display: table;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
+    padding-bottom: 11px;
+    padding-top: 6px;
     min-width: 8em;
     padding-left: 0px;
     padding-right: 0px;
@@ -182,13 +182,6 @@ dialog#pkgselected {
     min-height: 5em;
     display: grid;
 }
-
-.bgcolor-pkg-native{background-color: #747474 !important}
-.bgcolor-pkg-aur{background-color: #4f768b !important}
-.bgcolor-pkg-flatpak{background-color: #8b7a13 !important}
-.bgcolor-pkg-snap{background-color: #7764a9 !important}
-.bgcolor-pkg-web{background-color: #2c8b70 !important}
-.disable-checkbox-bigstore{background-color: #111111 !important}
 
 .switch>span:after{background-color: rgb(0 0 0 / 32%) !important}
 
@@ -345,6 +338,160 @@ body.dark {
   --button-elevate1: 0 0.090rem 0.090rem 0 rgb(0 0 0 / 40%);
   --onhover-elevate1: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 18%);
   --body: transparent;
+}
+
+body {
+   --install-button-bg: #388e3c;
+  --install-button-fg: #ffffff;
+  --remove-button-bg: #e53935;
+  --remove-button-fg: #ffffff;
+  --update-button-bg: #ef6c00;
+  --update-button-fg: #ffffff;
+  --aur-bg: #4f768b;
+  --aur-fg: #ffffff;
+  --native-bg: #747474;
+  --native-fg: #ffffff;
+  --flatpak-bg: #8b7a13;
+  --flatpak-fg: #ffffff;
+  --snap-bg: #7764a9;
+  --snap-fg: #ffffff;
+  --web-bg: #2c8b70;
+  --web-fg: #ffffff;   
+}
+
+.remove-button-color {
+        background-color: var(--remove-button-bg);
+        color: var(--remove-button-fg);
+}
+
+.install-button-color {
+        background-color: var(--install-button-bg);
+        color: var(--install-button-fg);
+}
+
+.update-button-color {
+        background-color: var(--update-button-bg);
+        color: var(--update-button-fg);
+}
+
+.pkg-native-color{
+        background-color: var(--native-bg) !important;
+        color: var(--native-fg);
+}
+
+.pkg-aur-color{
+        background-color: var(--aur-bg) !important;
+        color: var(--aur-fg);
+}
+
+.pkg-flatpak-color{
+        background-color: var(--flatpak-bg) !important;
+        color: var(--flatpak-fg);
+}
+
+.pkg-snap-color{
+        background-color: var(--snap-bg) !important;
+        color: var(--snap-fg);
+}
+
+.pkg-web-color{
+        background-color: var(--web-bg) !important;
+        color: var(--web-fg);
+}
+
+.result-pkg-style {
+    /* width: 10px; */
+    width: 5px !important;
+    /* content-visibility: initial; */
+    content-visibility: hidden;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    border-bottom-left-radius: 0px;
+    /* text-combine-upright: all; */
+}
+
+
+.show-text {
+    /* width: 87px !important; */
+    content-visibility: auto;
+    max-width: fit-content;
+}
+.only-color-line {
+    /* width: 30px; */
+    width: 1em;
+    float: right;
+    content-visibility: auto;
+    border-radius: 0;
+    /* padding: 0px !important; */
+}
+
+.disable-checkbox-bigstore{background-color: #111111 !important}
+
+.border-left-install {
+    border-left: solid;
+    border-left-width: 6px;
+    border-bottom-left-radius: 18px !important;
+    border-color: var(--install-button-bg);
+}
+
+.border-left-remove {
+    border-left: solid;
+    border-left-width: 6px;
+    border-bottom-left-radius: 18px !important;
+    border-color: var(--remove-button-bg);
+}
+
+.border-left-update {
+    border-left: solid;
+    border-left-width: 6px;
+    border-bottom-left-radius: 18px !important;
+    border-color: var(--update-button-bg);
+}
+
+.table-title-remove {
+    background-color: var(--remove-button-bg);
+    color: var(--remove-button-fg);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    width: fit-content;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-top: 2em;
+}
+
+.table-title-install {
+    background-color: var(--install-button-bg);
+    color: var(--install-button-fg);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    width: fit-content;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-top: 2em;
+}
+
+.table-title-update {
+    background-color: var(--update-button-bg);
+    color: var(--update-button-fg);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    width: fit-content;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-top: 2em;
 }
 
 @media only screen and (min-width: 601px) {
@@ -613,6 +760,14 @@ h6 {
 .button, button {
     font-size: inherit !important;
     font-weight: inherit !important;
+}
+
+.bottom-to-transparent {
+    background-color: #ffffff00 !important;
+    flex-direction: column;
+    min-block-size: 4rem;
+    padding: 0 1rem;
+    background: linear-gradient(180deg, var(--surface) 91%, rgba(0,0,0,0) 100%);   
 }
 
 [x-cloak] { display: none !important; }

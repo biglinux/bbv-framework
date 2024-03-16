@@ -1,3 +1,41 @@
+const cachedComponents = {};
+
+// Função auxiliar para carregar e armazenar componentes em cache
+async function loadAndCacheComponent(componentName, jsonFile) {
+    // Verifique se o componente já está em cache
+    if (cachedComponents[componentName]) {
+        return cachedComponents[componentName];
+    }
+
+    let response;
+    let componentHtml = "";
+
+    // Tente carregar o componente dos caminhos fornecidos
+    for (const path of [`components/${componentName}.html`, `/usr/share/bigbashview/framework/component/${componentName}.html`]) {
+        response = await fetch(path);
+        if (response.ok) {
+            componentHtml = await response.text();
+            break; // Saia do loop se o componente for encontrado
+        }
+    }
+
+    if (componentHtml) {
+        // Armazene o componente em cache
+        const componentData = { html: componentHtml };
+
+        if (jsonFile) {
+            const jsonData = await fetch(jsonFile).then((res) => res.json());
+            componentData.data = jsonData;
+        }
+
+        cachedComponents[componentName] = componentData;
+        return componentData;
+    } else {
+        console.error(`Component '${componentName}' not found in either path.`);
+        return null;
+    }
+}
+
 // Alpine listeners
 document.addEventListener("alpine:init", async () => {
     // Existing 'fetchjson' magic method for fetching and returning a specific item from JSON
@@ -70,34 +108,20 @@ document.addEventListener("alpine:init", async () => {
     };
 
     // Loop through all elements with the 'component' attribute
-    document.querySelectorAll("[component]").forEach(async (component) => {
+    for (const component of document.querySelectorAll("[component]")) {
         const componentName = component.getAttribute("component");
         const jsonFile = component.getAttribute("load-json");
 
-        let response = await fetch(`components/${componentName}.html`);
-        let componentHtml = "";
+        const componentData = await loadAndCacheComponent(componentName, jsonFile);
 
-        if (!response.ok) {
-            // Try to load the component from the alternative path if not found in the first one
-            response = await fetch(
-                `/usr/share/bigbashview/framework/component/${componentName}.html`
-            );
-        }
+        if (componentData) {
+            component.innerHTML = componentData.html;
 
-        if (response.ok) {
-            componentHtml = await response.text();
-
-            if (jsonFile) {
-                const jsonData = await fetch(jsonFile).then((res) => res.json());
-                component.innerHTML = componentHtml;
-                Alpine.addScopeToNode(component, jsonData, Alpine.reactive);
-            } else {
-                component.innerHTML = componentHtml;
+            if (jsonFile && componentData.data) {
+                Alpine.addScopeToNode(component, componentData.data, Alpine.reactive);
             }
-        } else {
-            console.error(`Component '${componentName}' not found in either path.`);
         }
-    });
+    }
 });
 
 // Actual fetch function
