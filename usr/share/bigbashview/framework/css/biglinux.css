@@ -1,4 +1,5 @@
-@import url("system.sh.css");
+@import url("fonts.sh.css");
+@import url("colors.sh.css");
 
 /** {
     text-rendering: geometricPrecision;
@@ -246,7 +247,7 @@ label{
     box-shadow: var(--onhover-elevate1);
 }
 
-:root,
+/*:root,
 body.light {
   --primary: #cdcdcd;
   --on-primary:#3a6df0;
@@ -291,8 +292,8 @@ body.light {
   --button-elevate1: 0 0.090rem 0.090rem 0 rgb(0 0 0 / 40%);
   --onhover-elevate1: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 18%);
   --body: transparent;
-}
-
+}*/
+/*
 body.dark {
   --primary: #21242d;
   --on-primary:#ffffff;
@@ -338,7 +339,7 @@ body.dark {
   --button-elevate1: 0 0.090rem 0.090rem 0 rgb(0 0 0 / 40%);
   --onhover-elevate1: 0 0.25rem 0.5rem 0 rgb(0 0 0 / 18%);
   --body: transparent;
-}
+}*/
 
 body {
    --install-button-bg: #388e3c;

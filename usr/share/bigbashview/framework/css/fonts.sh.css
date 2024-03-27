@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Convert kdeglobals in css
+
+awk -F[,=] '/^(font|menuFont|toolBarFont|fixed|smallestReadableFont|activeFont)=/{
+    fontName=$2;
+    fontSize=$3 "pt";
+    fontWeight="400"; # Default weight
+    # Adjust the weight based on the font description
+    if ($12 ~ "[Tt]hin") fontWeight="100"; # Thin
+    else if ($12 ~ "[Ll]ight") fontWeight="200"; # Light
+    else if ($12 ~ "[Mm]edium") fontWeight="500"; # Medium
+    else if ($12 ~ "[Bb]old") fontWeight="600"; # Bold
+    else if ($12 ~ "[Bb]lack") fontWeight="800"; # Black
+    fontStyle="normal";
+    if ($NF ~ /Italic$/) fontStyle="italic"; # Check if ends with Italic
+    variableName=substr($1, 1, length($1)-1); # Remove the last character (equal sign)
+    variableName=tolower(variableName); # Convert to lower case
+    # Output CSS variables
+    print "--" variableName "t-size: " fontSize ";";
+    print "--" variableName "t-family: \"" fontName "\";";
+    print "--" variableName "t-weight: " fontWeight ";";
+    print "--" variableName "t-style: " fontStyle ";";
+}' ~/.config/kdeglobals
