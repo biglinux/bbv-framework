@@ -1,4 +1,3 @@
-#: bbv-framework/usr/share/bigbashview/framework/js/beer.min.js:2
 #: bbv-framework/usr/share/bigbashview/framework/js/alpine/cdn.min.js:5
 #: bbv-framework/usr/share/bigbashview/framework/js/alpine/anchor.min.js:1
 #: bbv-framework/usr/share/bigbashview/framework/js/autocomplete.min.js:8

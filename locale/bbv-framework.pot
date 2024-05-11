@@ -1,5 +1,3 @@
-#: bbv-framework/usr/share/bigbashview/framework/js/beer.min.js:2
-#: bbv-framework/usr/share/bigbashview/framework/js/beer.min.js:2
 #: bbv-framework/usr/share/bigbashview/framework/js/alpine/cdn.min.js:5
 #: bbv-framework/usr/share/bigbashview/framework/js/alpine/cdn.min.js:5
 #: bbv-framework/usr/share/bigbashview/framework/js/alpine/cdn.min.js:5
