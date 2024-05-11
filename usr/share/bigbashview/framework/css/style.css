@@ -19,7 +19,7 @@ nav.extend:is(:hover, .active) {
   padding: 0.5rem;
   justify-content: flex-start;
   flex-direction: column;
-  background-color: var(--surface);
+  background-color: var(--surface-variant);
   gap: 0;
 }
 

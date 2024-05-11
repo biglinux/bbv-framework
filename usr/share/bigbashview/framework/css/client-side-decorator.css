@@ -1,0 +1,201 @@
+        body {
+            /* The body is used to render the shadow around the window and allow resizing */
+            overflow: hidden;
+            text-align: -webkit-center;
+            background-color: transparent !important;
+        }
+
+        body.normal-mode {
+            margin-top: 15px;
+        }
+
+        /* Removes all margins in maximized window mode, and window shadow */
+        body.maximized-mode {
+            margin: 0;
+        }
+        
+        /* Fix size of overlay */
+        .overlay {
+            margin: 15px;
+            border-radius: 10px;
+            width: -webkit-fill-available;
+            height: -webkit-fill-available;
+        }
+
+        /* In this div the page is actually rendered */
+        #page {
+            border-radius: 12px; /* Rounds the corners of the page container */
+            background-color: var(--surface);
+            margin: 0px;
+            padding: 0px;
+            display: flex;
+            position: unset;
+            font-size: 0.98em;
+        }
+
+        #page.normal-mode {
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);  /* Adds a shadow to the page container in not maximized mode */
+            height: calc(100vh - 30px); /* Sets the height to the full viewport height minus 30px in normal mode, 15px for the top and 15px for the bottom, for shadow */
+            width: calc(100vw - 30px);
+            border-radius: 10px; /* Rounds the corners of the page container in normal mode */
+        }
+
+        #page.maximized-mode {
+            box-shadow: none; /* Removes the shadow from the page container in maximized mode */
+            height: 100vh; /* Sets the height to the full viewport height in maximized mode */
+            width: 100vw;
+            border-radius: 0px; /* Removes the corner rounding in maximized mode */
+        }
+
+        .page-content {
+            margin-left: 10px;
+            margin-top: 50px;
+            margin-bottom: 15px;
+            overflow: auto;
+        }
+
+        #title-bar {
+            position: fixed;
+            padding: 5px;
+            width: -webkit-fill-available;
+            justify-content: center;
+            user-select: none;
+            display: flex;
+            z-index: 1000;
+        }
+
+        article.content {
+            vertical-align: middle;
+            height: auto;
+            margin: auto;
+        }
+
+        .window-control-btn-box {
+            padding-top: 8px; /* Adds padding at the top of the window control buttons */
+            z-index: 100000 !important; /* Ensures the window control buttons are always on top */
+            position: relative;
+        }
+
+        #right {
+            background-color: var(--background);
+            width: 100%;
+            justify-content: right;
+            display: flex;
+            align-items: start;
+            text-align: left;
+        }
+
+        #right.normal-mode {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+}
+        }
+
+        #right.maximized-mode {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .right-content {
+            padding-left: 10px;
+            padding-right: 10px;
+            overflow: auto;
+            padding-bottom: 23px;
+            height: calc(100% - 40px);
+            width: 100%;
+            margin-top: 40px;
+        }
+
+#left {
+    min-width: 16em;
+    display: flex;
+    flex-flow: column;
+    /* margin-bottom: 27px; */
+    overflow: auto;
+    flex: none;
+}
+        
+        #app-left-title {
+            place-content: center;
+            margin-top: 3px;
+            margin-bottom: 1em;
+        }
+
+        #window-controls-left {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+            position: absolute;
+            height: min-content;
+            width: min-content;
+        }
+
+        #window-controls-right {
+            display: flex;
+            align-items: center;
+            margin-right: 8px;
+            position: absolute;
+            height: min-content;
+            width: min-content;
+            right: 10px;
+        }
+
+        .maximized-mode-window-control-right {
+            right: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        .maximized-mode-window-control-left {
+            margin-left: 0 !important;
+        }
+
+        .window-controls-space-left-side {
+            margin-top: 3em;
+        }
+
+        .window-controls-space-right-side {
+            margin-top: 3em;
+        }
+
+        .window-controls-maximized {
+            display: flex;
+            align-items: center;
+        }
+
+        .window-controls-left-side {
+            left: 0px;
+            position: fixed;
+            flex-flow: row-reverse;
+        }
+
+        .window-controls-left-side-maximized {
+            left: 5px;
+            position: fixed;
+            flex-flow: row-reverse;
+        }
+
+        .window-control-btn {
+            border: none;
+            margin-right: 0.4em;
+            margin-left: 0.4em;
+            border-radius: 1em;
+            aspect-ratio: 1 / 1;
+            padding: 0.2em;
+            display: flex;
+            min-width: 16px;
+            background-color: #00000012;
+            font-size: large;
+        }
+
+        .window-control-btn:hover {
+            background-color: #00000018;
+        }
+
+        .window-control-btn-img {
+            margin: auto;
+            min-width: inherit;
+filter: brightness(0) contrast(10);
+        }
+        

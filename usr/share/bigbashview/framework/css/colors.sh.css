@@ -13,7 +13,7 @@ while IFS='=' read -r key value; do
         current_section="${current_section//[^a-z0-9]/_}" # Replace non-alphanumeric characters with '_'
     else
         # Process only lines that correspond to color settings
-        if [[ $key =~ ^Foreground.*$ || $key =~ ^Background.*$ || $key =~ ^Decoration.*$ || $key =~ ^Button.*$ || $key =~ ^Window.*$ || $key =~ ^Highlight.*$ || $key =~ ^activeBackground.*$ || $key =~ ^activeBlend.*$ || $key =~ ^activeForeground.*$ || $key =~ ^inactiveBackground.*$ || $key =~ ^inactiveBlend.*$ || $key =~ ^inactiveForeground.*$ ]]; then
+        if [[ $key =~ ^Foreground.*$ || $key =~ ^Background.*$ || $key =~ ^Decoration.*$ || $key =~ ^Button.*$ || $key =~ ^Window.*$ || $key =~ ^Highlight.*$ || $key =~ ^activeBackground.*$ || $key =~ ^activeBlend.*$ || $key =~ ^activeForeground.*$ || $key =~ ^inactiveBackground.*$ || $key =~ ^inactiveBlend.*$ || $key =~ ^inactiveForeground.*$  || $key =~ ^Header.*$ ]]; then
             # Normalize the key name to be used as a variable name
             normalized_key="${key,,}" # Convert to lowercase
             normalized_key="${normalized_key//[^a-z0-9_]/_}" # Replace non-alphanumeric characters with '_'
@@ -26,30 +26,20 @@ while IFS='=' read -r key value; do
             
             # Define the variable dynamically
             declare "$var_name=$rgb_value"
+            # echo "$var_name=$rgb_value"
         fi
     fi
 done < ~/.config/kdeglobals
-
-# colors_window_backgroundalternate="rgb(49,54,59)"
-# colors_window_backgroundnormal="rgb(42,46,50)"
-# colors_window_decorationfocus="rgb(61,174,233)"
-# colors_window_decorationhover="rgb(61,174,233)"
-# colors_window_foregroundactive="rgb(61,174,233)"
-# colors_window_foregroundinactive="rgb(161,169,177)"
-# colors_window_foregroundlink="rgb(29,153,243)"
-# colors_window_foregroundnegative="rgb(218,68,83)"
-# colors_window_foregroundneutral="rgb(246,116,0)"
-# colors_window_foregroundnormal="rgb(252,252,252)"
-# colors_window_foregroundpositive="rgb(39,174,96)"
-# colors_window_foregroundvisited="rgb(155,89,182)"
 
 echo "
 :root,
 body {
   --primary: $colors_window_backgroundalternate;
-  --on-primary:$colors_window_decorationfocus;
-  --primary-container:$colors_window_decorationhover;
-  --on-primary-container:$colors_window_foregroundnormal;
+  --on-primary: $colors_window_decorationfocus;
+  --primary-container: $colors_window_decorationhover;
+  --on-primary-container: $colors_window_foregroundnormal;
+  --scrollbar: ${colors_window_foregroundnormal/)/,0.14)};
+  --scrollbar-hover: ${colors_window_decorationhover/)/,0.5)};
   --secondary:#f7f7f7;
   --on-secondary:#3c3a3a;
   --secondary-container:rgb(189 189 189 / 70%);
@@ -61,12 +51,12 @@ body {
   --on-error:#ffffff;
   --error-container:#ffdad6;
   --on-error-container:#410002;
-  --background: $colors_window_backgroundnormal;
+  --background: $colors_view_backgroundnormal;
   --on-background:#3c3a3a;
-  --surface:$colors_window_backgroundnormal;
-  --on-surface:$colors_window_foregroundnormal;
-  --surface-variant:#efefef;
-  --on-surface-variant:#41474d;
+  --surface: $wm_activebackground;
+  --on-surface: $wm_activeforeground;
+  --surface-variant: ${colors_window_foregroundnormal/)/,0.1)};
+  --on-surface-variant: $colors_window_foregroundnormal;
   --outline:#72787e;
   --outline-variant:#c1c7ce;
   --shadow:#000000;
@@ -92,50 +82,109 @@ body {
 }
 "
 # Show the defined variables for verification
-declare -p | grep '^declare --' | grep -E 'color_|button_|window_|tooltip_|foreground_|background_|decoration_|highlight_|wm_'
+# declare -p | grep '^declare --' | grep -E 'color_|button_|window_|tooltip_|foreground_|background_|decoration_|highlight_|wm_'
 
 # Example:
-# colors_button_backgroundalternate="rgb(210,210,210)"
-# colors_button_backgroundnormal="rgb(235,235,235)"
-# colors_button_decorationfocus="rgb(61,174,233)"
-# colors_button_decorationhover="rgb(142,203,233)"
-# colors_button_foregroundactive="rgb(255,128,224)"
-# colors_button_foregroundinactive="rgb(136,135,134)"
-# colors_button_foregroundlink="rgb(53,132,228)"
-# colors_button_foregroundnegative="rgb(191,3,3)"
-# colors_button_foregroundneutral="rgb(176,128,0)"
-# colors_button_foregroundnormal="rgb(49,54,59)"
-# colors_button_foregroundpositive="rgb(0,110,40)"
-# colors_button_foregroundvisited="rgb(69,40,134)"
-# colors_tooltip_backgroundalternate="rgb(0,0,0)"
-# colors_tooltip_backgroundnormal="rgb(0,0,0)"
-# colors_tooltip_decorationfocus="rgb(67,192,255)"
-# colors_tooltip_decorationhover="rgb(155,223,255)"
-# colors_tooltip_foregroundactive="rgb(255,128,224)"
-# colors_tooltip_foregroundinactive="rgb(255,255,127)"
-# colors_tooltip_foregroundlink="rgb(53,132,228)"
-# colors_tooltip_foregroundnegative="rgb(255,106,108)"
-# colors_tooltip_foregroundneutral="rgb(255,183,0)"
-# colors_tooltip_foregroundnormal="rgb(255,255,255)"
-# colors_tooltip_foregroundpositive="rgb(0,255,89)"
-# colors_tooltip_foregroundvisited="rgb(165,157,255)"
-# colors_window_backgroundalternate="rgb(224,224,225)"
-# colors_window_backgroundnormal="rgb(255,255,255)"
-# colors_window_decorationfocus="rgb(61,174,233)"
-# colors_window_decorationhover="rgb(142,203,233)"
-# colors_window_foregroundactive="rgb(255,128,224)"
-# colors_window_foregroundinactive="rgb(136,135,134)"
-# colors_window_foregroundlink="rgb(53,132,228)"
-# colors_window_foregroundnegative="rgb(191,3,3)"
-# colors_window_foregroundneutral="rgb(176,128,0)"
-# colors_window_foregroundnormal="rgb(31,31,31)"
-# colors_window_foregroundpositive="rgb(0,110,40)"
-# colors_window_foregroundvisited="rgb(69,40,134)"
-# kfiledialog_settings_decoration_position="rgb(2)"
-# var_name="wm_inactiveforeground"
-# wm_activebackground="rgb(235,235,235)"
-# wm_activeblend="rgb(255,0,0)"
-# wm_activeforeground="rgb(0,0,0)"
-# wm_inactivebackground="rgb(250,250,250)"
-# wm_inactiveblend="rgb(235,235,235)"
-# wm_inactiveforeground="rgb(104,108,111)"
+# colors_button_backgroundalternate=rgb(163,212,250)
+# colors_button_backgroundnormal=rgb(252,252,252)
+# colors_button_decorationfocus=rgb(255,170,0)
+# colors_button_decorationhover=rgb(170,85,0)
+# colors_button_foregroundactive=rgb(61,174,233)
+# colors_button_foregroundinactive=rgb(112,125,138)
+# colors_button_foregroundlink=rgb(41,128,185)
+# colors_button_foregroundnegative=rgb(218,68,83)
+# colors_button_foregroundneutral=rgb(246,116,0)
+# colors_button_foregroundnormal=rgb(35,38,41)
+# colors_button_foregroundpositive=rgb(39,174,96)
+# colors_button_foregroundvisited=rgb(155,89,182)
+# colors_complementary_backgroundalternate=rgb(27,30,32)
+# colors_complementary_backgroundnormal=rgb(42,46,50)
+# colors_complementary_decorationfocus=rgb(61,174,233)
+# colors_complementary_decorationhover=rgb(61,174,233)
+# colors_complementary_foregroundactive=rgb(61,174,233)
+# colors_complementary_foregroundinactive=rgb(161,169,177)
+# colors_complementary_foregroundlink=rgb(29,153,243)
+# colors_complementary_foregroundnegative=rgb(218,68,83)
+# colors_complementary_foregroundneutral=rgb(246,116,0)
+# colors_complementary_foregroundnormal=rgb(252,252,252)
+# colors_complementary_foregroundpositive=rgb(39,174,96)
+# colors_complementary_foregroundvisited=rgb(155,89,182)
+# colors_header_backgroundalternate=rgb(0,85,0)
+# colors_header_backgroundnormal=rgb(130,143,71)
+# colors_header_decorationfocus=rgb(61,174,233)
+# colors_header_decorationhover=rgb(61,174,233)
+# colors_header_foregroundactive=rgb(61,174,233)
+# colors_header_foregroundinactive=rgb(112,125,138)
+# colors_header_foregroundlink=rgb(41,128,185)
+# colors_header_foregroundnegative=rgb(218,68,83)
+# colors_header_foregroundneutral=rgb(246,116,0)
+# colors_header_foregroundnormal=rgb(35,38,41)
+# colors_header_foregroundpositive=rgb(39,174,96)
+# colors_header_foregroundvisited=rgb(155,89,182)
+# colors_headerinactive_backgroundalternate=rgb(227,229,231)
+# colors_headerinactive_backgroundnormal=rgb(239,240,241)
+# colors_headerinactive_decorationfocus=rgb(61,174,233)
+# colors_headerinactive_decorationhover=rgb(61,174,233)
+# colors_headerinactive_foregroundactive=rgb(61,174,233)
+# colors_headerinactive_foregroundinactive=rgb(112,125,138)
+# colors_headerinactive_foregroundlink=rgb(41,128,185)
+# colors_headerinactive_foregroundnegative=rgb(218,68,83)
+# colors_headerinactive_foregroundneutral=rgb(246,116,0)
+# colors_headerinactive_foregroundnormal=rgb(35,38,41)
+# colors_headerinactive_foregroundpositive=rgb(39,174,96)
+# colors_headerinactive_foregroundvisited=rgb(155,89,182)
+# colors_selection_backgroundalternate=rgb(163,212,250)
+# colors_selection_backgroundnormal=rgb(85,255,0)
+# colors_selection_decorationfocus=rgb(255,170,0)
+# colors_selection_decorationhover=rgb(170,85,0)
+# colors_selection_foregroundactive=rgb(255,255,255)
+# colors_selection_foregroundinactive=rgb(112,125,138)
+# colors_selection_foregroundlink=rgb(253,188,75)
+# colors_selection_foregroundnegative=rgb(176,55,69)
+# colors_selection_foregroundneutral=rgb(198,92,0)
+# colors_selection_foregroundnormal=rgb(255,255,255)
+# colors_selection_foregroundpositive=rgb(23,104,57)
+# colors_selection_foregroundvisited=rgb(155,89,182)
+# colors_tooltip_backgroundalternate=rgb(239,240,241)
+# colors_tooltip_backgroundnormal=rgb(247,247,247)
+# colors_tooltip_decorationfocus=rgb(255,170,0)
+# colors_tooltip_decorationhover=rgb(170,85,0)
+# colors_tooltip_foregroundactive=rgb(61,174,233)
+# colors_tooltip_foregroundinactive=rgb(112,125,138)
+# colors_tooltip_foregroundlink=rgb(41,128,185)
+# colors_tooltip_foregroundnegative=rgb(218,68,83)
+# colors_tooltip_foregroundneutral=rgb(246,116,0)
+# colors_tooltip_foregroundnormal=rgb(35,38,41)
+# colors_tooltip_foregroundpositive=rgb(39,174,96)
+# colors_tooltip_foregroundvisited=rgb(155,89,182)
+# colors_view_backgroundalternate=rgb(247,247,247)
+# colors_view_backgroundnormal=rgb(255,255,255)
+# colors_view_decorationfocus=rgb(255,170,0)
+# colors_view_decorationhover=rgb(170,85,0)
+# colors_view_foregroundactive=rgb(61,174,233)
+# colors_view_foregroundinactive=rgb(112,125,138)
+# colors_view_foregroundlink=rgb(41,128,185)
+# colors_view_foregroundnegative=rgb(218,68,83)
+# colors_view_foregroundneutral=rgb(246,116,0)
+# colors_view_foregroundnormal=rgb(0,0,0)
+# colors_view_foregroundpositive=rgb(39,174,96)
+# colors_view_foregroundvisited=rgb(155,89,182)
+# colors_window_backgroundalternate=rgb(227,229,231)
+# colors_window_backgroundnormal=rgb(243,243,243)
+# colors_window_decorationfocus=rgb(255,170,0)
+# colors_window_decorationhover=rgb(170,85,0)
+# colors_window_foregroundactive=rgb(61,174,233)
+# colors_window_foregroundinactive=rgb(112,125,138)
+# colors_window_foregroundlink=rgb(41,128,185)
+# colors_window_foregroundnegative=rgb(218,68,83)
+# colors_window_foregroundneutral=rgb(246,116,0)
+# colors_window_foregroundnormal=rgb(170,0,0)
+# colors_window_foregroundpositive=rgb(39,174,96)
+# colors_window_foregroundvisited=rgb(155,89,182)
+# kfiledialog_settings_decoration_position=rgb(0)
+# wm_activebackground=rgb(255,85,127)
+# wm_activeblend=rgb(170,85,255)
+# wm_activeforeground=rgb(35,38,41)
+# wm_inactivebackground=rgb(255,0,0)
+# wm_inactiveblend=rgb(170,170,255)
+# wm_inactiveforeground=rgb(85,255,255)
