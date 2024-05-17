@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
             right?.classList.add('maximized-mode-window-control-right');
             right?.classList.remove('normal-mode');
             canResize = false;
-            if (maximize) { maximize.innerHTML = `<img class="window-control-btn-img" src="<?include bash RUST_BACKTRACE=0 geticons window-restore-symbolic | head -n1 ?>">`; }
+            if (maximize) { maximize.innerHTML = `<img class="window-control-btn-img" src="<?include bash RUST_BACKTRACE=0 geticons window-restore-symbolic ?>">`; }
         } else {
             // Adds the specific class and removing others
             page?.classList.add('normal-mode');
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
             windowControlsRight?.classList.add('window-controls');
             windowControlsLeft?.classList.add('window-controls');
             canResize = true;
-            if (maximize) { maximize.innerHTML = `<img class="window-control-btn-img" src="<?include bash RUST_BACKTRACE=0 geticons window-maximize-symbolic | head -n1 ?>">`; }
+            if (maximize) { maximize.innerHTML = `<img class="window-control-btn-img" src="<?include bash RUST_BACKTRACE=0 geticons window-maximize-symbolic ?>">`; }
         }
     }
 
