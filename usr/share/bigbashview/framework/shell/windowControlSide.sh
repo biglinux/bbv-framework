@@ -10,7 +10,7 @@ minimizeButton="
                 <a id=\"minimize-btn\" onclick=\"windowControl.minimize()\">
                     <div class=\"window-control-btn-box\">
                         <div class=\"window-control-btn\">
-                            <img class=\"window-control-btn-img\" src=\"$(RUST_BACKTRACE=0 geticons --no-fallbacks window-minimize-symbolic | head -n1)\">
+                            <img class=\"window-control-btn-img\" src=\"$(RUST_BACKTRACE=0 geticons window-minimize-symbolic | head -n1)\">
                         </div>
                     </div>
                 </a>
@@ -21,7 +21,7 @@ maximizeButton="
                     <div class=\"window-control-btn-box\">
                         <div id=\"maximize-btn-image\" class=\"window-control-btn\">
                             <!-- This icon is managed by javascript to change from maximize and restore -->
-                            <img class=\"window-control-btn-img\" src=\"$(RUST_BACKTRACE=0 geticons --no-fallbacks window-maximize-symbolic | head -n1)\">
+                            <img class=\"window-control-btn-img\" src=\"$(RUST_BACKTRACE=0 geticons window-maximize-symbolic | head -n1)\">
                         </div>
                     </div>
                 </a>
@@ -31,7 +31,7 @@ closeButton="
                 <a id=\"close-btn\" onclick=\"windowControl.close()\">
                     <div class=\"window-control-btn-box\">
                         <div class=\"window-control-btn\">
-                            <img class=\"window-control-btn-img\" src=\"$(RUST_BACKTRACE=0 geticons --no-fallbacks window-close-symbolic | head -n1)\">
+                            <img class=\"window-control-btn-img\" src=\"$(RUST_BACKTRACE=0 geticons window-close-symbolic | head -n1)\">
                         </div>
                     </div>
                 </a>
