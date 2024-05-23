@@ -31,12 +31,18 @@
             display: flex;
             position: unset;
             font-size: 0.98em;
+            min-height: auto;
         }
 
         #page.normal-mode {
             box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);  /* Adds a shadow to the page container in not maximized mode */
             height: calc(100vh - 30px); /* Sets the height to the full viewport height minus 30px in normal mode, 15px for the top and 15px for the bottom, for shadow */
             width: calc(100vw - 30px);
+            border-radius: 10px; /* Rounds the corners of the page container in normal mode */
+        }
+        
+        .window-shadow {
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);  /* Adds a shadow to the page container in not maximized mode */
             border-radius: 10px; /* Rounds the corners of the page container in normal mode */
         }
 
@@ -85,13 +91,20 @@
             text-align: left;
         }
 
+        .system-background-color {
+            background-color: var(--background);
+        }
+
+        .system-background-color-surface {
+            background-color: var(-surface);
+        }
+
         #right.normal-mode {
             border-top-right-radius: 10px;
             border-bottom-right-radius: 10px;
             border-top-left-radius: 0px;
             border-bottom-left-radius: 0px;
 }
-        }
 
         #right.maximized-mode {
             border-top-right-radius: 0;
@@ -199,3 +212,7 @@
 filter: brightness(0) contrast(10);
         }
         
+
+        .background-transparent {
+            background: transparent !important;
+        }

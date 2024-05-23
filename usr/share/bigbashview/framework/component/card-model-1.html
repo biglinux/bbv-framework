@@ -1,19 +1,73 @@
-<!-- FILEPATH: /usr/share/bigbashview/framework/component/card-model-1.html -->
-<!-- This is the HTML template for a card component -->
-<article class="grid-item round fill medium-height middle-align center-align no-margin">
-    <div>
-        <!-- Display an icon -->
-        <img class="extra" :src="icon" alt="">
-        <!-- Display the title -->
-        <h5 class="center-align" x-html="title"></h5>
-        <!-- Display the description -->
-        <p x-html="description"></p>
-        <!-- Display a button -->
-        <button class="border secondary-container large-margin upper" @click="buttonAction">
-            <!-- Display an icon inside the button -->
-            <i x-html="buttonIcon"></i>
-            <!-- Display the button text -->
-            <span x-html="buttonText"></span>
-        </button>
-    </div>
-</article>
+<style>
+.card-model-1-top {
+    background: var(--surface);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    display: flex;
+    place-content: center;
+    place-items: flex-start;
+    height: 4em;
+    align-items: center;
+}
+
+.card-model-1-middle {
+    min-height: 11em;
+    padding-top: 1.5em;
+    flex-flow: wrap;
+    text-align: -webkit-left;
+}
+
+.card-model-1-bottom {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+.card-model-1-text-icon {
+    font-size: 2em;
+    height: auto;
+    width: auto;
+}
+
+.card-model-1-icon {
+    margin-right: 10px;
+}
+</style>
+
+        <div class="card-model-1-top drag-area">
+            <div class="card-model-1-icon">
+                <!-- Display an icon if provided -->
+                <template x-if="icon">
+                    <img class="extra" :src="icon" alt="">
+                </template>
+                <!-- Display a text icon if provided -->
+                <template x-if="textIcon">
+                    <i x-html="textIcon" class="card-model-1-text-icon"></i>
+                </template>
+            </div>
+            <div class="card-model-1-title">
+                <!-- Display the title -->
+                <h5 class="small center-align" x-html="title"></h5>
+            </div>
+        </div>
+        <div class="card-model-1-middle middle-align padding">
+            <!-- Display the description -->
+            <p class="no-margin" x-html="description"></p>
+            <!-- Display a description2 if provided -->
+            <template x-if="description2">
+                <p class="no-margin" x-html="description2"></p>
+            </template>
+            <!-- Display a description3 if provided -->
+            <template x-if="description3">
+                <p class="no-margin" x-html="description3"></p>
+            </template>
+        </div>
+        <div class="card-model-1-bottom">
+            <button :class="buttonClass" @click="buttonAction">
+                <!-- Display an icon inside the button if provided -->
+                <template x-if="buttonIcon">
+                    <i x-html="buttonIcon"></i>
+                </template>
+                <!-- Display the button text -->
+                <span x-html="buttonText"></span>
+            </button>
+        </div>

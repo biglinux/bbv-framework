@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Variables for double-click detection
         let lastClickTime = 0;
         disableDragArea = false;
-        const doubleClickDelay = 300; // Tempo máximo em milissegundos entre cliques para ser considerado um clique duplo
+        const doubleClickDelay = 400; // Tempo máximo em milissegundos entre cliques para ser considerado um clique duplo
         // Maybe use in future if qtwayland double click fixed // Adds a double-click event listener on the title bar to toggle window state
         // Maybe use in future if qtwayland double click fixed // var titleBar = document.getElementById('title-bar');
         // Maybe use in future if qtwayland double click fixed // titleBar.addEventListener('dblclick', function () {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const timeSinceLastClick = currentTime - lastClickTime;
 
             if (timeSinceLastClick < doubleClickDelay) {
-                // Clique duplo detectado
+                // Detected double click
                 window.windowControl.maximize(); // Calls the method to maximize or restore the window
                 disableDragArea = true;
                 setTimeout(() => {
