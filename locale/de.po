@@ -1,13 +1,18 @@
 #: bbv-framework/usr/share/bigbashview/framework/js/alpine/cdn.min.js:5
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: C\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: attranslate\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: bbv-framework/usr/share/bigbashview/framework/colors.html:0
 msgid "Click on a color to copy it to the clipboard"
-msgstr ""
+msgstr "Klicken Sie auf eine Farbe, um diese in die Zwischenablage zu kopieren"
