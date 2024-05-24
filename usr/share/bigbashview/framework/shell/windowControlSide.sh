@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# Execute command to obtain left-side button configuration
-buttonsLeft=$(kreadconfig6 --group "org.kde.kdecoration2" --key "ButtonsOnLeft" --file "$HOME/.config/kwinrc")
-
-# Execute command to obtain right-side button configuration
-buttonsRight=$(kreadconfig6 --group "org.kde.kdecoration2" --key "ButtonsOnRight" --file "$HOME/.config/kwinrc")
-
 minimizeButton="
                 <a id=\"minimize-btn\" onclick=\"windowControl.minimize()\">
                     <div class=\"window-control-btn-box\">
@@ -36,6 +30,22 @@ closeButton="
                     </div>
                 </a>
 "
+
+if [[ $XDG_CURRENT_DESKTOP == 'GNOME' ]]; then
+
+    if grep -q ':.*close' <(gsettings get org.gnome.desktop.wm.preferences button-layout); then
+        buttonsRight='IAX'
+    else
+        buttonsLeft='XIA'
+    fi
+
+else
+    # Execute command to obtain left-side button configuration
+    buttonsLeft=$(kreadconfig6 --group "org.kde.kdecoration2" --key "ButtonsOnLeft" --file "$HOME/.config/kwinrc")
+
+    # Execute command to obtain right-side button configuration
+    buttonsRight=$(kreadconfig6 --group "org.kde.kdecoration2" --key "ButtonsOnRight" --file "$HOME/.config/kwinrc")
+fi
 
 if [[ "$buttonsLeft" =~ [XAI] ]]; then
 
