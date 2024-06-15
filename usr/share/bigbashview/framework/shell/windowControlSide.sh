@@ -89,5 +89,11 @@ echo '<style>
 .window-control-btn-img {
     filter: contrast(0) brightness(5);
 }
+.window-control-btn {
+    background-color: #ffffff18;
+}
+.window-control-btn:hover {
+    background-color: #ffffff22;
+}
 </style>'
 fi
