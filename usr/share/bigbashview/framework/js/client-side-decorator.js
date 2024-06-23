@@ -26,18 +26,20 @@ document.addEventListener('DOMContentLoaded', function () {
         // Adds a mousedown event listener on the title bar
         var titleBar = document.getElementById('title-bar');
         titleBar.addEventListener('mousedown', function (event) {
-            const currentTime = new Date().getTime();
-            const timeSinceLastClick = currentTime - lastClickTime;
+            if (event.target.tagName.toLowerCase() !== 'input' && event.target.tagName.toLowerCase() !== 'i') {
+                const currentTime = new Date().getTime();
+                const timeSinceLastClick = currentTime - lastClickTime;
 
-            if (timeSinceLastClick < doubleClickDelay) {
-                // Detected double click
-                window.windowControl.maximize(); // Calls the method to maximize or restore the window
-                disableDragArea = true;
-                setTimeout(() => {
-                    disableDragArea = false;
-                }, 300);
+                if (timeSinceLastClick < doubleClickDelay) {
+                    // Detected double click
+                    window.windowControl.maximize(); // Calls the method to maximize or restore the window
+                    disableDragArea = true;
+                    setTimeout(() => {
+                        disableDragArea = false;
+                    }, 300);
+                }
+                lastClickTime = currentTime;
             }
-            lastClickTime = currentTime;
         });
         // End workaround for maximize window with double click
     });
