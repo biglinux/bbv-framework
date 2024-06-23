@@ -60,6 +60,16 @@
             overflow: auto;
         }
 
+        .page-content-without-left-bar {
+            margin-left: 0px;
+            margin-top: 41px;
+            margin-bottom: 0px;
+            overflow: auto;
+            border-top-right-radius: 0px;
+            border-top-left-radius: 0px;
+            width: 100%;
+        }
+
         #title-bar {
             position: fixed;
             padding: 5px;
@@ -121,14 +131,14 @@
             margin-top: 40px;
         }
 
-#left {
-    min-width: 16em;
-    display: flex;
-    flex-flow: column;
-    /* margin-bottom: 27px; */
-    overflow: auto;
-    flex: none;
-}
+        #left {
+            min-width: 16em;
+            display: flex;
+            flex-flow: column;
+            /* margin-bottom: 27px; */
+            overflow: auto;
+            flex: none;
+        }
         
         #app-left-title {
             place-content: center;
