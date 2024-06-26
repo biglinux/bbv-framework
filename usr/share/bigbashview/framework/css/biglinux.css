@@ -159,7 +159,7 @@ dialog{
 }
 
 .surface-bgcolor{
-    background-color: var(--surface);
+    background-color: var(--surface) !important;
 }
 
 .background-bgcolor{
