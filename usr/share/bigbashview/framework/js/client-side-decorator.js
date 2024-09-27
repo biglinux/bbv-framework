@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Variables for double-click detection
         let lastClickTime = 0;
         disableDragArea = false;
-        const doubleClickDelay = 400; // Tempo máximo em milissegundos entre cliques para ser considerado um clique duplo
+        const doubleClickDelay = 400;
         // Maybe use in future if qtwayland double click fixed // Adds a double-click event listener on the title bar to toggle window state
         // Maybe use in future if qtwayland double click fixed // var titleBar = document.getElementById('title-bar');
         // Maybe use in future if qtwayland double click fixed // titleBar.addEventListener('dblclick', function () {
@@ -49,37 +49,74 @@ document.addEventListener('DOMContentLoaded', function () {
         var windowControlsRight = document.getElementById('window-controls-right');
         var windowControlsLeft = document.getElementById('window-controls-left');
         var windowControls = document.querySelector('.window-controls');
+        var overlay = document.querySelector('.overlay');
         var maximize = document.querySelector('#maximize-btn-image');
         var right = document.getElementById('right');
+        var titleAutoChangeSide = document.querySelector('#title-auto-change-side');
 
         if (state === 'maximized') {
             // Adds the specific class and removing others
             page?.classList.add('maximized-mode');
             body?.classList.add('maximized-mode');
+            titleAutoChangeSide?.classList.add('title-auto-change-maximized-mode');
             page?.classList.remove('normal-mode');
             body?.classList.remove('normal-mode');
+            titleAutoChangeSide?.classList.remove('title-auto-change-normal-mode');
             windowControlsRight?.classList.add('maximized-mode-window-control-right');
             windowControlsLeft?.classList.add('maximized-mode-window-control-left');
             windowControlsRight?.classList.remove('window-controls');
             windowControlsLeft?.classList.remove('window-controls');
             right?.classList.add('maximized-mode-window-control-right');
             right?.classList.remove('normal-mode');
+            overlay?.classList.add('no-margin', 'no-round');
             canResize = false;
             if (maximize) { maximize.innerHTML = `<img class="window-control-btn-img" src="<?include bash RUST_BACKTRACE=0 geticons window-restore-symbolic ?>">`; }
         } else {
             // Adds the specific class and removing others
             page?.classList.add('normal-mode');
             body?.classList.add('normal-mode');
+            titleAutoChangeSide?.classList.add('title-auto-change-normal-mode');
             page?.classList.remove('maximized-mode');
             body?.classList.remove('maximized-mode');
+            titleAutoChangeSide?.classList.remove('title-auto-change-maximized-mode');
             right?.classList.add('normal-mode');
             right?.classList.remove('maximized-mode-window-control-right');
             windowControlsRight?.classList.remove('maximized-mode-window-control-right');
             windowControlsLeft?.classList.remove('maximized-mode-window-control-left');
             windowControlsRight?.classList.add('window-controls');
             windowControlsLeft?.classList.add('window-controls');
+            overlay?.classList.remove('no-margin', 'no-round');
             canResize = true;
             if (maximize) { maximize.innerHTML = `<img class="window-control-btn-img" src="<?include bash RUST_BACKTRACE=0 geticons window-maximize-symbolic ?>">`; }
+        }
+
+        // Move content of left bar to top if buttons are hidden
+        if (windowControlsLeft) {
+            // Gets the computed style of the div
+            var computedStyle = window.getComputedStyle(windowControlsLeft);
+
+            // Initializes the height variable
+            var height = 2;
+
+            // Checks if the display is not 'none'
+            if (computedStyle.display !== 'none') {
+                height = windowControlsLeft.offsetHeight + 5;
+            }
+
+            // Selects the div with the id 'left'
+            var leftDiv = document.getElementById('left');
+
+            // Checks if the 'left' div exists
+            if (leftDiv) {
+                // Applies the height of the 'window-controls-left' div as the top margin on the 'left' div
+                leftDiv.style.marginTop = height + 'px';
+            }
+
+            titleAutoChangeSide?.classList.add('title-auto-change-right');
+            titleAutoChangeSide?.classList.remove('title-auto-change-left');
+        } else {
+            titleAutoChangeSide?.classList.add('title-auto-change-left');
+            titleAutoChangeSide?.classList.remove('title-auto-change-right');
         }
     }
 
@@ -183,20 +220,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Selects the div with the class 'window-controls-left'
-var windowControlsLeft = document.querySelector('#window-controls-left');
 
-// Checks if the div exists
-if (windowControlsLeft) {
-    // Gets the height of the div
-    var height = windowControlsLeft.offsetHeight + 5;
 
-    // Selects the div with the id 'left'
-    var leftDiv = document.getElementById('left');
-
-    // Checks if the 'left' div exists
-    if (leftDiv) {
-        // Applies the height of the 'window-controls-left' div as the top margin on the 'left' div
-        leftDiv.style.marginTop = height + 'px';
-    }
-}

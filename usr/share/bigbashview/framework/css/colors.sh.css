@@ -33,7 +33,7 @@ done < ~/.config/kdeglobals
 
 echo "
 :root,
-body {
+body.light, body.dark {
   --primary: $colors_window_backgroundalternate;
   --on-primary: $colors_window_decorationfocus;
   --primary-container: $colors_window_decorationhover;

@@ -47,6 +47,17 @@ else
     buttonsRight=$(kreadconfig6 --group "org.kde.kdecoration2" --key "ButtonsOnRight" --file "$HOME/.config/kwinrc")
 fi
 
+
+# Hide window buttons in KDE maximized window if kwin using this configuration
+if [[ $XDG_CURRENT_DESKTOP == 'KDE' ]] && grep -q 'BorderlessMaximizedWindows=true' ~/.config/kwinrc; then
+
+    echo "<style>
+    #window-controls-right.maximized-mode-window-control-right { display: none; }
+    #window-controls-left.maximized-mode-window-control-left { display: none; }
+</style>"
+
+fi
+
 if [[ "$buttonsLeft" =~ [XAI] ]]; then
 
     echo '<div id="window-controls-left" class="window-controls no-drag">'
