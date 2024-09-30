@@ -31,7 +31,7 @@ closeButton="
                 </a>
 "
 
-if [[ $XDG_CURRENT_DESKTOP == 'GNOME' ]]; then
+if [[ $XDG_CURRENT_DESKTOP != 'KDE' ]]; then
 
     if grep -q ':.*close' <(gsettings get org.gnome.desktop.wm.preferences button-layout); then
         buttonsRight='IAX'
