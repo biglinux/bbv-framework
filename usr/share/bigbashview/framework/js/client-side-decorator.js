@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
             right?.classList.remove('normal-mode');
             overlay?.classList.add('no-margin', 'no-round');
             canResize = false;
-            if (maximize) { maximize.innerHTML = `<img class="window-control-btn-img" src="<?include bash RUST_BACKTRACE=0 geticons window-restore-symbolic ?>">`; }
+            if (maximize) { maximize.innerHTML = `<img class="window-control-btn-img" src="<?include bash RUST_BACKTRACE=0 geticons window-restore-symbolic 2> /dev/null ?>">`; }
         } else {
             // Adds the specific class and removing others
             page?.classList.add('normal-mode');
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
             windowControlsLeft?.classList.add('window-controls');
             overlay?.classList.remove('no-margin', 'no-round');
             canResize = true;
-            if (maximize) { maximize.innerHTML = `<img class="window-control-btn-img" src="<?include bash RUST_BACKTRACE=0 geticons window-maximize-symbolic ?>">`; }
+            if (maximize) { maximize.innerHTML = `<img class="window-control-btn-img" src="<?include bash RUST_BACKTRACE=0 geticons window-maximize-symbolic 2> /dev/null ?>">`; }
         }
 
         // Move content of left bar to top if buttons are hidden

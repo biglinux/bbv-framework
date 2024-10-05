@@ -4,7 +4,7 @@ minimizeButton="
                 <a id=\"minimize-btn\" onclick=\"windowControl.minimize()\">
                     <div class=\"window-control-btn-box\">
                         <div class=\"window-control-btn\">
-                            <img class=\"window-control-btn-img\" src=\"$(geticons window-minimize-symbolic)\">
+                            <img class=\"window-control-btn-img\" src=\"$(geticons window-minimize-symbolic 2>/dev/null)\">
                         </div>
                     </div>
                 </a>
@@ -15,7 +15,7 @@ maximizeButton="
                     <div class=\"window-control-btn-box\">
                         <div id=\"maximize-btn-image\" class=\"window-control-btn\">
                             <!-- This icon is managed by javascript to change from maximize and restore -->
-                            <img class=\"window-control-btn-img\" src=\"$(geticons window-maximize-symbolic)\">
+                            <img class=\"window-control-btn-img\" src=\"$(geticons window-maximize-symbolic 2>/dev/null)\">
                         </div>
                     </div>
                 </a>
@@ -25,7 +25,7 @@ closeButton="
                 <a id=\"close-btn\" onclick=\"windowControl.close()\">
                     <div class=\"window-control-btn-box\">
                         <div class=\"window-control-btn\">
-                            <img class=\"window-control-btn-img\" src=\"$(geticons window-close-symbolic)\">
+                            <img class=\"window-control-btn-img\" src=\"$(geticons window-close-symbolic 2>/dev/null)\">
                         </div>
                     </div>
                 </a>
