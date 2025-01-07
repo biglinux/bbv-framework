@@ -44,12 +44,12 @@
                     <i x-html="textIcon" class="card-model-1-text-icon"></i>
                 </template>
             </div>
-            <div class="card-model-1-title">
+            <div class="card-model-1-title" tabindex="0">
                 <!-- Display the title -->
                 <h5 class="small center-align" x-html="title"></h5>
             </div>
         </div>
-        <div class="card-model-1-middle middle-align padding">
+        <div class="card-model-1-middle middle-align padding" tabindex="0">
             <!-- Display the description -->
             <p class="no-margin" x-html="description"></p>
             <!-- Display a description2 if provided -->
@@ -61,6 +61,7 @@
                 <p class="no-margin" x-html="description3"></p>
             </template>
         </div>
+
         <div class="card-model-1-bottom">
             <button :class="buttonClass" @click="buttonAction">
                 <!-- Display an icon inside the button if provided -->
