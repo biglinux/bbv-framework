@@ -51,7 +51,6 @@ body.light, body.dark {
   --on-error:#ffffff;
   --error-container:#ffdad6;
   --on-error-container:#410002;
-  --background: $colors_view_backgroundnormal;
   --on-background:#3c3a3a;
   --surface: $wm_activebackground;
   --on-surface: $wm_activeforeground;
